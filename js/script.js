@@ -1,4 +1,4 @@
-const numberOfFilms = +prompt('How many movies have you watched?', '0');
+const numberOfFilms = +prompt('How many movies have you watched?', '');
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -8,9 +8,27 @@ const personalMovieDB = {
   private: false,
 };
 
-const recentlyWatchedMovie = prompt('What movie have you watched recently?', 'LOTR: the fellowship of the ring'),
-      rateRecentlyWatchedMovie = +prompt('How would your rate the movie?', '0');
+for (let i = 0; i < 2; i++) {
+  const recentlyWatchedMovie = prompt('What movie have you watched recently?', ''),
+        rateRecentlyWatchedMovie = +prompt('How would your rate the movie?', '');
 
-personalMovieDB.movies[recentlyWatchedMovie] = rateRecentlyWatchedMovie;
+  if (recentlyWatchedMovie != null && rateRecentlyWatchedMovie != null && recentlyWatchedMovie != '' && rateRecentlyWatchedMovie != '' && recentlyWatchedMovie.length < 50) {
+    personalMovieDB.movies[recentlyWatchedMovie] = rateRecentlyWatchedMovie;
+    console.log('DONE');
+  } else {
+    i--;
+    console.log('ERROR');
+  }
+}
+
+if (personalMovieDB.count < 10) {
+  console.log('low');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+  console.log('classic');
+} else if (personalMovieDB.count > 30) {
+  console.log('dumbass');
+} else {
+  console.log('ERROR');
+}
 
 console.log(personalMovieDB);
